@@ -7,4 +7,3 @@ describe('\'users\' service', () => {
 
     assert.ok(service, 'Registered the service');
   });
-});
