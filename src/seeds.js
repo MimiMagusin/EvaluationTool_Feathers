@@ -13,20 +13,21 @@ const user = {
 const batches = [
   {
     number: 1,
-    startDate: 11-11-2011,
-    endDate: 12-12-2011,
+    startDate: Date.now,
+    endDate: Date.now,
     students: [],
     totalScore: [],
   },
   {
     number: 2,
-    startDate: 11-11-2012,
-    endDate: 12-12-2012,
+    startDate: Date.now,
+    endDate: Date.now,
     students: [],
     totalScore: [],
   }
-]
+];
 
+//Functions that perform the seeding: Uncomment When you dropped your db
 const feathersClient = feathers();
 
 feathersClient
@@ -34,14 +35,26 @@ feathersClient
   .configure(rest('http://localhost:3030').superagent(superagent))
   .configure(auth());
 
-feathersClient.service('users').create(user)
-  .then(() => {
-    feathersClient.authenticate({
-      strategy: 'local',
-      email: user.email,
-      password: user.password
-    });
-  })
+  feathersClient.service('users').create(user)
   .catch(function(error) {
     console.error('Error creating user!', error);
   });
+
+  feathersClient.authenticate({
+    strategy: 'local',
+    email: user.email,
+    password: user.password
+  })
+    .then(() => {
+      batches.map((batch) => {
+        feathersClient.service('batches').create(batch)
+          .then((result) => {
+            console.log('batch seeded...', result.question);
+          }).catch((error) => {
+            console.error('Error seeding batch!', error.message);
+          });
+      });
+    })
+    .catch(function(error){
+      console.error('Error authenticating!', error);
+    });
