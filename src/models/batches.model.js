@@ -9,7 +9,7 @@ module.exports = function (app) {
   const evaluations = new Schema ({
     color: { type: String },
     remark: { type: String },
-    date: { type: String },
+    date: { type: Date },
   });
 
   const students = new Schema({
