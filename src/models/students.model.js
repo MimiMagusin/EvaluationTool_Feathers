@@ -17,7 +17,7 @@ module.exports = function (app) {
         lastName: { type: String, required: true },
         profilePicture: { type: String, required: true },
         evaluation: [evaluations],
-        batch: { type: String},
+        batch: { type: Number},
         currentEvaluation: { type: String},
       });
 
