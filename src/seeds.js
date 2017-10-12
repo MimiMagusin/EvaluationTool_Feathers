@@ -13,15 +13,15 @@ const user = {
 const batches = [
   {
     number: 1,
-    startDate: Date.now,
-    endDate: Date.now,
+    startDate: '12-12-2013',
+    endDate: '11-11-2012',
     students: [],
     totalScore: [],
   },
   {
     number: 2,
-    startDate: Date.now,
-    endDate: Date.now,
+    startDate: '11-11-2013',
+    endDate: '12-12-2014',
     students: [],
     totalScore: [],
   }
