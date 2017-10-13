@@ -1,4 +1,4 @@
-// const { authenticate } = require('feathers-authentication').hooks;
+const { authenticate } = require('feathers-authentication').hooks;
 // const commonHooks = require('feathers-hooks-common');
 // const getStudent = require('../../hooks/get-student');
 module.exports = {
