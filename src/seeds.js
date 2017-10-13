@@ -27,6 +27,39 @@ const batches = [
   }
 ];
 
+const students = [
+  {
+    firstName: 'jantje green',
+    lastName: 'pietje',
+    profilePicture: 'https://www.ldatschool.ca/wp-content/uploads/2015/03/Young-student.jpg',
+    batch: 1,
+    currentEvaluation: "green",
+  },
+  {
+    firstName: 'jantje red',
+    lastName: 'pietje',
+    profilePicture: 'https://www.ldatschool.ca/wp-content/uploads/2015/03/Young-student.jpg',
+    batch: 1,
+    currentEvaluation: "red",
+  },
+  {
+    firstName: 'jantje yellow',
+    lastName: 'pietje',
+    profilePicture: 'https://www.ldatschool.ca/wp-content/uploads/2015/03/Young-student.jpg',
+    batch: 1,
+    currentEvaluation: "yellow",
+  },
+  {
+    firstName: 'jantje',
+    lastName: 'pietje',
+    profilePicture: 'https://www.ldatschool.ca/wp-content/uploads/2015/03/Young-student.jpg',
+    batch: 1,
+    currentEvaluation: "",
+  }
+]
+
+
+
 //Functions that perform the seeding: Uncomment When you dropped your db
 const feathersClient = feathers();
 
@@ -54,7 +87,28 @@ feathersClient
             console.error('Error seeding batch!', error.message);
           });
       });
+
     })
     .catch(function(error){
       console.error('Error authenticating!', error);
     });
+
+    feathersClient.authenticate({
+      strategy: 'local',
+      email: user.email,
+      password: user.password
+    })
+      .then(() => {
+        students.map((batch) => {
+          feathersClient.service('students').create(batch)
+            .then((result) => {
+              console.log('student seeded...', result.question);
+            }).catch((error) => {
+              console.error('Error seeding student!', error.message);
+            });
+        });
+
+      })
+      .catch(function(error){
+        console.error('Error authenticating!', error);
+      });
