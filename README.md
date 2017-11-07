@@ -1,9 +1,10 @@
 # evaluation-tool-api
 
-> 
+>
 
 ## About
 
+This is a project in progress! The feathers part of this project, download EvaluationTool_React to enjoy the full experience! 
 This project uses [Feathers](http://feathersjs.com). An open source web framework for building modern real-time applications.
 
 ## Getting Started
